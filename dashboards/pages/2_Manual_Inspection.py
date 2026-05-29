@@ -120,18 +120,75 @@ if predict_button:
     else:
         risk = "LOW"
 
-    # Analyze anomalies for remarks
-    diagnosis = []
-    if vibration > 1.5:
-        diagnosis.append("Possible bearing wear detected")
-    if pressure > 3:
-        diagnosis.append("Pressure instability observed")
-    if temperature > 85:
-        diagnosis.append("Severe overheating detected")
-    if airflow < 200:
-        diagnosis.append("Restricted airflow suspected")
+    # Analyze anomalies for detailed remarks and findings
+    diagnosis_summary = []
+    detailed_findings = []
     
-    remarks = " | ".join(diagnosis) if diagnosis else "No major abnormalities detected"
+    if vibration > 1.5:
+        diagnosis_summary.append("Possible bearing wear")
+        detailed_findings.append(
+            f"⚠️ **Physical Vibration Level ({vibration:.2f} mm/s - High)**: "
+            "High vibration levels indicate mechanical imbalance, shaft misalignment, or bearing sleeve wear. "
+            "Prolonged operation under these conditions will cause permanent damage to rotor components."
+        )
+    if pressure > 3.0:
+        diagnosis_summary.append("Pressure instability")
+        detailed_findings.append(
+            f"⚠️ **Pressure Stability ({pressure:.1f} bar - Unstable)**: "
+            "Extreme discharge or suction pressure deviation detected. This suggests potential expansion valve blockage, "
+            "compressor valve leakage, or refrigerant loop restriction."
+        )
+    if temperature > 85:
+        diagnosis_summary.append("Severe overheating")
+        detailed_findings.append(
+            f"⚠️ **Severe Overheating ({temperature:.1f} °C - Severe)**: "
+            "Discharge air temperature is dangerously elevated. This places the motor windings at critical risk of "
+            "thermal breakdown and permanent compressor failure."
+        )
+    if airflow < 200:
+        diagnosis_summary.append("Restricted airflow")
+        detailed_findings.append(
+            f"⚠️ **Airflow Obstruction ({airflow} CFM - Restricted)**: "
+            "Airflow has dropped below standard operating thresholds. This typically indicates a clogged air filter, "
+            "damper failure, or evaporator coil icing."
+        )
+    if noise_db > 75:
+        diagnosis_summary.append("High acoustic noise")
+        detailed_findings.append(
+            f"⚠️ **Acoustic Noise level ({noise_db} dB - High)**: "
+            "Operating noise is significantly elevated, indicating potential housing loose bolts, mechanical grinding, "
+            "or fan blade deflection."
+        )
+    if oil_leakage == "Yes":
+        diagnosis_summary.append("Active leakage")
+        detailed_findings.append(
+            "⚠️ **Coolant/Oil Leakage (Confirmed)**: "
+            "Visual fluid leakage observed. Fluid loss degrades motor lubrication, increases internal friction, "
+            "and will eventually cause lockup or refrigerant venting."
+        )
+    if cooling_efficiency == "Poor":
+        diagnosis_summary.append("Poor cooling efficiency")
+        detailed_findings.append(
+            "⚠️ **Cooling Output (Degraded)**: "
+            "Thermodynamic performance is highly degraded. The system is consuming nominal power but fails to lower "
+            "temperatures to spec. Inspect the condenser coils and return loop."
+        )
+    if humidity_issue == "Yes":
+        diagnosis_summary.append("Elevated humidity")
+        detailed_findings.append(
+            f"⚠️ **High Humidity Level ({humidity}% - Elevated)**: "
+            "Elevated moisture levels are taxing the cooling capacity, leading to condensation build-up and "
+            "increased risk of corrosion or mold growth."
+        )
+    if power_issue == "High":
+        diagnosis_summary.append("High power draw")
+        detailed_findings.append(
+            f"⚠️ **Power Load Draw ({hvac_power} kW - Excessive)**: "
+            "The electrical current drawn is above nominal rating. This indicates high motor load due to mechanical friction, "
+            "or failing electrical contacts/capacitor."
+        )
+
+    remarks = " | ".join(diagnosis_summary) if diagnosis_summary else "No major abnormalities detected"
 
     # =====================================
     # SAVE INSPECTION TO DATABASE
@@ -179,11 +236,11 @@ if predict_button:
         st.metric("Assessed Risk Level", risk)
 
     st.markdown("### AI Findings")
-    if diagnosis:
-        for item in diagnosis:
-            st.warning(f"{item}")
+    if detailed_findings:
+        for item in detailed_findings:
+            st.warning(item)
     else:
-        st.success("No physical or mechanical anomalies identified.")
+        st.success("No physical or mechanical anomalies identified. All subsystems are operating within standard tolerance bands.")
 
     st.markdown("### Maintenance Recommendation")
     if risk == "CRITICAL":

@@ -276,8 +276,8 @@ if prompt:
                     response = completion.text
                     
                 except Exception as e:
-                    st.error("api fallback")
-                    response = f"api fallback\n\n{get_copilot_response_fallback(prompt, detailed=detailed_mode)}"
+                    st.warning(f"AI Engine Offline (Error: {str(e)}). Displaying local diagnostic database report:")
+                    response = get_copilot_response_fallback(prompt, detailed=detailed_mode)
             else:
                 response = get_copilot_response_fallback(prompt, detailed=detailed_mode)
                 

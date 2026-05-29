@@ -1,4 +1,5 @@
 from kafka import KafkaProducer
+import ssl
 
 import pandas as pd
 import json
@@ -49,6 +50,12 @@ if os.getenv('KAFKA_USERNAME') and os.getenv('KAFKA_PASSWORD'):
     kafka_kwargs['sasl_mechanism'] = os.getenv('KAFKA_SASL_MECHANISM', 'SCRAM-SHA-256')
     kafka_kwargs['sasl_plain_username'] = os.getenv('KAFKA_USERNAME')
     kafka_kwargs['sasl_plain_password'] = os.getenv('KAFKA_PASSWORD')
+    
+    # Bypass certificate verification
+    ssl_context = ssl.create_default_context()
+    ssl_context.check_hostname = False
+    ssl_context.verify_mode = ssl.CERT_NONE
+    kafka_kwargs['ssl_context'] = ssl_context
 
 producer = KafkaProducer(**kafka_kwargs)
 

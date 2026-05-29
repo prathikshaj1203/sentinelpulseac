@@ -26,3 +26,5 @@ airflow/logs/
 *.csv
 **/datasets/
 ai_models/datasets/
+!ai_models/master_hvac_dataset.csv
+

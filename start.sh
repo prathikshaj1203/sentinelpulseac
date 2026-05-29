@@ -7,9 +7,35 @@ DB_USER=${DB_USER:-"postgres"}
 DB_NAME=${DB_NAME:-"telemetry_db"}
 DB_PASSWORD=${DB_PASSWORD:-"root1234"}
 
-# Template the Grafana datasource file dynamically with active DB configurations
-echo "Templating Grafana datasource provisioning..."
-cat <<EOF > /etc/grafana/provisioning/datasources/datasource.yml
+# Create all Grafana runtime and configuration folders in /tmp to bypass read-only filesystems
+echo "Setting up Grafana configurations in writeable /tmp..."
+mkdir -p /tmp/grafana/data \
+         /tmp/grafana/log \
+         /tmp/grafana/plugins \
+         /tmp/grafana/provisioning/datasources \
+         /tmp/grafana/provisioning/dashboards \
+         /tmp/grafana/dashboards
+
+# Copy dashboard JSONs and provider configs from project to writeable /tmp
+cp -r /app/grafana/dashboards/* /tmp/grafana/dashboards/
+
+# Create dashboards.yml pointing to the writeable dashboards path
+cat <<EOF > /tmp/grafana/provisioning/dashboards/dashboards.yml
+apiVersion: 1
+
+providers:
+  - name: 'telemetry_dashboards'
+    orgId: 1
+    folder: ''
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /tmp/grafana/dashboards
+EOF
+
+# Template the Grafana datasource file dynamically with active DB configurations inside /tmp
+cat <<EOF > /tmp/grafana/provisioning/datasources/datasource.yml
 apiVersion: 1
 
 datasources:
@@ -39,11 +65,12 @@ export GF_SECURITY_ALLOW_EMBEDDING=true
 export GF_SERVER_ROOT_URL="%(protocol)s://%(domain)s:%(http_port)s/grafana/"
 export GF_SERVER_SERVE_FROM_SUB_PATH=true
 
-# Create Grafana directories in /tmp to avoid permissions issues
-mkdir -p /tmp/grafana/data /tmp/grafana/log /tmp/grafana/plugins
+# Export all path overrides to target /tmp
 export GF_PATHS_DATA=/tmp/grafana/data
 export GF_PATHS_LOGS=/tmp/grafana/log
 export GF_PATHS_PLUGINS=/tmp/grafana/plugins
+export GF_PATHS_PROVISIONING=/tmp/grafana/provisioning
+export GF_PID_FILE_PATH=/tmp/grafana/grafana.pid
 
 # Start the validated consumer in the background
 echo "Starting Telemetry Consumer..."
@@ -53,7 +80,7 @@ python kafka/validated_consumer.py &
 echo "Starting Telemetry Producer..."
 python kafka/producer.py &
 
-# Start Grafana Server in the background
+# Start Grafana Server in the background using the custom writeable paths
 echo "Starting Grafana Server..."
 /usr/sbin/grafana-server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.ini &
 

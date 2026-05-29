@@ -39,6 +39,12 @@ export GF_SECURITY_ALLOW_EMBEDDING=true
 export GF_SERVER_ROOT_URL="%(protocol)s://%(domain)s:%(http_port)s/grafana/"
 export GF_SERVER_SERVE_FROM_SUB_PATH=true
 
+# Create Grafana directories in /tmp to avoid permissions issues
+mkdir -p /tmp/grafana/data /tmp/grafana/log /tmp/grafana/plugins
+export GF_PATHS_DATA=/tmp/grafana/data
+export GF_PATHS_LOGS=/tmp/grafana/log
+export GF_PATHS_PLUGINS=/tmp/grafana/plugins
+
 # Start the validated consumer in the background
 echo "Starting Telemetry Consumer..."
 python kafka/validated_consumer.py &

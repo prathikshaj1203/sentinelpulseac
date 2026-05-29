@@ -127,65 +127,79 @@ if predict_button:
     if vibration > 1.5:
         diagnosis_summary.append("Possible bearing wear")
         detailed_findings.append(
-            f"⚠️ **Physical Vibration Level ({vibration:.2f} mm/s - High)**: "
-            "High vibration levels indicate mechanical imbalance, shaft misalignment, or bearing sleeve wear. "
-            "Prolonged operation under these conditions will cause permanent damage to rotor components."
+            f"⚠️ **Physical Vibration Level ({vibration:.2f} mm/s - High Vibration Warning)**:\n"
+            "The measured mechanical vibration exceeds the safe baseline threshold of 1.5 mm/s. "
+            "This suggests dynamic imbalance, misalignment of the motor-compressor coupling shaft, or mechanical loosening of the chassis. "
+            "Sustained high vibration forces lead to accelerated fatigue in bearing sleeves, stator coil insulation breakdown, "
+            "and structural damage to mounting foundation anchors. Immediate laser alignment testing and mounting torque validation are required."
         )
     if pressure > 3.0:
         diagnosis_summary.append("Pressure instability")
         detailed_findings.append(
-            f"⚠️ **Pressure Stability ({pressure:.1f} bar - Unstable)**: "
-            "Extreme discharge or suction pressure deviation detected. This suggests potential expansion valve blockage, "
-            "compressor valve leakage, or refrigerant loop restriction."
+            f"⚠️ **Pressure Stability ({pressure:.1f} bar - Unstable Pressure Warning)**:\n"
+            "The discharge/suction pressure ratio has deviated significantly from the stable operating range. "
+            "This indicates refrigerant flow restriction, expansion valve orifice clogging, or internal compressor valve seat leakage. "
+            "Operating with unstable pressure leads to short-cycling, high thermal stress on the motor windings, and oil migration from the sump. "
+            "Verify superheat values and inspect the expansion valve for ice or debris accumulation."
         )
     if temperature > 85:
         diagnosis_summary.append("Severe overheating")
         detailed_findings.append(
-            f"⚠️ **Severe Overheating ({temperature:.1f} °C - Severe)**: "
-            "Discharge air temperature is dangerously elevated. This places the motor windings at critical risk of "
-            "thermal breakdown and permanent compressor failure."
+            f"⚠️ **Severe Overheating ({temperature:.1f} °C - Critical Temperature Alert)**:\n"
+            "The discharge port temperature is operating at a dangerous level. This is typically caused by condenser fan failure, "
+            "scale build-up on heat exchanger surfaces, or refrigerant charge deficiency. "
+            "Excessive discharge temperature degrades compressor oil viscosity, leading to metal-on-metal friction, bearing scoring, "
+            "and terminal winding burnout. Complete electrical isolation is strongly recommended until thermal levels return to normal."
         )
     if airflow < 200:
         diagnosis_summary.append("Restricted airflow")
         detailed_findings.append(
-            f"⚠️ **Airflow Obstruction ({airflow} CFM - Restricted)**: "
-            "Airflow has dropped below standard operating thresholds. This typically indicates a clogged air filter, "
-            "damper failure, or evaporator coil icing."
+            f"⚠️ **Airflow Obstruction ({airflow} CFM - Restricted Airflow Warning)**:\n"
+            "The measured volumetric airflow is below the minimum required boundary of 200 CFM. "
+            "This is caused by high dust load on the MERV intake filters, supply/return damper jamming, or ice formation on the evaporator coils. "
+            "Low airflow prevents proper heat absorption, leading to liquid floodback to the compressor (which can break scroll/reciprocating components) "
+            "and system efficiency loss. Immediate filter inspection and coil defrost cycle check are required."
         )
     if noise_db > 75:
         diagnosis_summary.append("High acoustic noise")
         detailed_findings.append(
-            f"⚠️ **Acoustic Noise level ({noise_db} dB - High)**: "
-            "Operating noise is significantly elevated, indicating potential housing loose bolts, mechanical grinding, "
-            "or fan blade deflection."
+            f"⚠️ **Acoustic Noise level ({noise_db} dB - High Acoustic Noise Warning)**:\n"
+            "The acoustic signature has spiked to high decibel levels. This noise profile points to loose structural panels, "
+            "blower fan wheel imbalance, or severe mechanical grinding inside the motor casing. "
+            "If unaddressed, it can lead to mounting bracket failure, fan blade detachment, and permanent damage to auxiliary drive shafts."
         )
     if oil_leakage == "Yes":
         diagnosis_summary.append("Active leakage")
         detailed_findings.append(
-            "⚠️ **Coolant/Oil Leakage (Confirmed)**: "
-            "Visual fluid leakage observed. Fluid loss degrades motor lubrication, increases internal friction, "
-            "and will eventually cause lockup or refrigerant venting."
+            "⚠️ **Coolant/Oil Leakage (Confirmed Fluid Loss Alert)**:\n"
+            "Active liquid or oil film detected on the refrigeration line joints or under the compressor crankcase. "
+            "Oil leakage depletes the compressor oil sump, leading to insufficient lubrication, dry bearing friction, and total lockup. "
+            "Furthermore, it suggests an active refrigerant leak, which will lead to low cooling capacity and environmental compliance violations. "
+            "Isolate the system and perform a pressurized nitrogen leak test."
         )
     if cooling_efficiency == "Poor":
         diagnosis_summary.append("Poor cooling efficiency")
         detailed_findings.append(
-            "⚠️ **Cooling Output (Degraded)**: "
-            "Thermodynamic performance is highly degraded. The system is consuming nominal power but fails to lower "
-            "temperatures to spec. Inspect the condenser coils and return loop."
+            "⚠️ **Cooling Output (Degraded Thermodynamic Performance)**:\n"
+            "The system cooling efficiency has degraded. The HVAC unit is drawing normal power but failing to maintain design space temperature. "
+            "This mismatch is caused by low heat transfer efficiency, evaporator coil blockages, or refrigerant charge drift. "
+            "Inspect the thermostatic expansion valve bulb and clean both evaporator and condenser coil surfaces."
         )
     if humidity_issue == "Yes":
         diagnosis_summary.append("Elevated humidity")
         detailed_findings.append(
-            f"⚠️ **High Humidity Level ({humidity}% - Elevated)**: "
-            "Elevated moisture levels are taxing the cooling capacity, leading to condensation build-up and "
-            "increased risk of corrosion or mold growth."
+            f"⚠️ **High Humidity Level ({humidity}% - High Latent Load Warning)**:\n"
+            "The ambient humidity has risen, creating an elevated latent cooling load. This forces the system to run longer cycles "
+            "to extract moisture, causing excessive water condensation in the drain pan. "
+            "Ensure condensate drain lines are clear, inspect trap operation, and verify that the indoor fan speed is adjusted to nominal rate."
         )
     if power_issue == "High":
         diagnosis_summary.append("High power draw")
         detailed_findings.append(
-            f"⚠️ **Power Load Draw ({hvac_power} kW - Excessive)**: "
-            "The electrical current drawn is above nominal rating. This indicates high motor load due to mechanical friction, "
-            "or failing electrical contacts/capacitor."
+            f"⚠️ **Power Load Draw ({hvac_power} kW - Excessive Electrical Draw)**:\n"
+            "The electric power consumption has reached a critical peak. High power draw occurs when the compressor motor is working "
+            "against severe mechanical friction (e.g. worn bearings, tight shafts) or when stator electrical winding insulation is degrading. "
+            "It can also indicate low voltage supply or loose electrical terminals. Immediate circuit breaker load checks and contactor inspections are required."
         )
 
     remarks = " | ".join(diagnosis_summary) if diagnosis_summary else "No major abnormalities detected"
@@ -254,127 +268,143 @@ if predict_button:
     else:
         st.success("✅ **NOMINAL STATUS**: Keep normal operation. Standard schedule stands.")
 
-    # Dropdown selector for the detailed report sections
-    selected_section = st.selectbox(
-        "Choose Detailed Maintenance Report Section to view/print:",
-        ["Executive Summary & Immediate Actions", "Technical Troubleshooting Guide", "Required Tools & Safety Checklist", "Future Preventive Maintenance Schedule"]
-    )
-
-    if risk == "CRITICAL":
-        if selected_section == "Executive Summary & Immediate Actions":
-            st.markdown("""
+    # Wrap the entire report in a single expander (dropdown report)
+    with st.expander("📋 Click to Expand Full Detailed Maintenance Recommendation Report", expanded=False):
+        if risk == "CRITICAL":
+            st.markdown(f"""
+            ## 🚨 EMERGENCY MAINTENANCE ACTION REPORT
+            
             ### 📝 Executive Summary
-            * **Status**: Critical mechanical/electrical deviation.
+            The HVAC system (ID: **{machine_id}**, Subsystem: **{ac_type}**) is currently operating under **CRITICAL mechanical and thermodynamic failure conditions**. Multiple monitored metrics, including severe vibration, extreme temperature, and degraded pressure stability, have breached their critical safety threshold limits. 
+            
+            This combination of faults indicates that a major failure of key compressor or motor components is actively occurring. Continued operation of the system under these loads is highly dangerous, presenting a severe risk of catastrophic component breakdown (e.g., rotor locking, scroll fracture), motor winding burnout, or electrical fires in the main control panel. Immediate action must be taken to isolate the system.
+            
             * **Urgency**: Immediate (Within 1 hour).
-            * **Summary**: Multiple operational parameters (such as extreme temperature or excessive physical vibration) have crossed safety thresholds, indicating active component failure. Continued operation risks complete compressor destruction or electrical fire.
-            * **Action**: Order immediate system lockout and isolate the power supply.
+            * **Current Health Score**: {health_score:.1f}/100.
+            * **Assessed Risk Level**: CRITICAL.
+            * **Primary Recommendations**: Complete system isolation, lock-out tag-out (LOTO), and manual technician inspection.
+            
+            ---
+            
+            ### 🛠️ Technical Troubleshooting Guide
+            1. **Isolate Power**: De-energize the unit at the local disconnect box. Apply Lock-Out Tag-Out (LOTO) to the main circuit breaker to prevent accidental startup.
+            2. **Pressure Equalization**: Attach digital manifold gauge set to high and low suction valves to measure system pressure differentials.
+            3. **Inspect Bearings & Rotor**: Measure shaft axial and radial play using a dial indicator. Check the compressor oil sump and magnet plugs for metallic shavings or debris.
+            4. **Clean Outdoor Coil Fins**: Visually inspect the condenser coils. Clear off debris, leaves, or scale deposits using compressed air or water wash.
+            5. **Re-Test Current**: Briefly power on the system under controlled load while monitoring current draw on all phases to ensure it settles within nameplate limits.
+            
+            ---
+            
+            ### 🧰 Required Tools & Safety Checklist
+            * **Tools Needed**: Laser Shaft Alignment kit, digital refrigerant manifold gauges, clamp-on multimeter, torque wrench, dial indicator.
+            * **PPE Required**: Electrical insulated gloves (Class 00), protective face shield, safety goggles, steel-toe boots.
+            * **Safety Rules**: Ensure a 2-person buddy system is active for all high-voltage panel checks. Verify zero-energy state before touching internal electrical components.
+            
+            ---
+            
+            ### 📅 Future Preventive Maintenance Schedule
+            * **Short-Term**: Increase telemetry monitoring frequency to 5-minute intervals for the next 7 days to verify parameter stability.
+            * **Mid-Term**: Schedule full compressor oil analysis and change the liquid line filter drier within 15 days.
+            * **Long-Term**: Replace baseline vibration dampers on the mounting base and inspect anchor bolts.
             """)
-        elif selected_section == "Technical Troubleshooting Guide":
-            st.markdown("""
-            ### 🛠️ Step-by-Step Technical Guide
-            1. **Isolate Power**: De-energize the unit at the local disconnect box. Apply Lock-Out Tag-Out (LOTO).
-            2. **Pressure Equalization**: Attach manifold gauge set and check high/low pressure differentials.
-            3. **Inspect Bearings**: Measure shaft axial play and check for metallic shavings in the oil pan.
-            4. **Clean Fins**: Visually inspect the condenser coils and clean off debris or scale deposits.
-            5. **Re-Test**: Power on briefly under controlled current monitoring to confirm current draw settles.
-            """)
-        elif selected_section == "Required Tools & Safety Checklist":
-            st.markdown("""
-            ### 🧰 Safety & Tooling Checklist
-            * **Tools Needed**: Laser Shaft Alignment kit, digital refrigerant manifold gauges, clamp-on multimeter, torque wrench.
-            * **PPE Required**: Electrical insulated gloves (Class 00), protective face shield, steel-toe safety boots.
-            * **Safety Rules**: Ensure 2-person buddy system is active for high-voltage panel checks.
-            """)
-        elif selected_section == "Future Preventive Maintenance Schedule":
-            st.markdown("""
-            ### 📅 Future Preventive Actions
-            * **Short-Term**: Increase telemetry monitoring frequency to 5-minute intervals for the next 7 days.
-            * **Mid-Term**: Schedule full compressor oil analysis and change liquid line filter drier within 15 days.
-            * **Long-Term**: Replace baseline vibration dampers on the mounting base.
-            """)
-
-    elif risk == "HIGH":
-        if selected_section == "Executive Summary & Immediate Actions":
-            st.markdown("""
+        elif risk == "HIGH":
+            st.markdown(f"""
+            ## ⚠️ URGENT MAINTENANCE ACTION REPORT
+            
             ### 📝 Executive Summary
-            * **Status**: Significant parameter degradation detected.
+            The HVAC system (ID: **{machine_id}**, Subsystem: **{ac_type}**) is exhibiting **HIGH operational risk and significant performance degradation**. Parameter drifts (such as rising temperatures, minor vibrations, or decreased airflow) indicate that the equipment is operating outside of its normal engineering tolerance window.
+            
+            While catastrophic failure is not immediate, the system's longevity is highly compromised. Operating under these conditions will accelerate wear on the compressor, degrade lubricant quality, and increase energy consumption by up to 40%. Maintenance must be performed within 24 hours to prevent escalation to critical/emergency status.
+            
             * **Urgency**: Urgent (Within 24 hours).
-            * **Summary**: The system has shown signs of performance loss and moderate thermal/vibration stress. Scheduled technician checks are needed immediately to prevent escalation.
-            * **Action**: Assign a technician work order for detailed inspection.
-            """)
-        elif selected_section == "Technical Troubleshooting Guide":
-            st.markdown("""
-            ### 🛠️ Step-by-Step Technical Guide
-            1. **Filter Review**: Check primary and secondary air filters; replace if pressure drop exceeds 150 Pa.
-            2. **Leak Detection**: Use electronic leak detector or bubble test along all joint seals.
-            3. **Inspect Belt/Coupling**: Inspect motor-blower drive belt tension and adjust as needed.
-            4. **Coil Inspection**: Spray foam cleaner on the outdoor condenser fins and wash down.
-            """)
-        elif selected_section == "Required Tools & Safety Checklist":
-            st.markdown("""
-            ### 🧰 Safety & Tooling Checklist
+            * **Current Health Score**: {health_score:.1f}/100.
+            * **Assessed Risk Level**: HIGH.
+            * **Primary Recommendations**: Schedule technician team, clean condenser coils, and check refrigerant charge.
+            
+            ---
+            
+            ### 🛠️ Technical Troubleshooting Guide
+            1. **Filter Review**: Check primary and secondary air filters; replace immediately if pressure drop exceeds 150 Pa.
+            2. **Leak Detection**: Use electronic leak detector or bubble test along all joint seals, coils, and service valves.
+            3. **Inspect Belt/Coupling**: Inspect motor-blower drive belt tension, check alignment of pulleys, and adjust as needed.
+            4. **Coil Inspection**: Spray foam cleaner on the outdoor condenser fins, let sit for 10 minutes, and wash down with low-pressure water.
+            
+            ---
+            
+            ### 🧰 Required Tools & Safety Checklist
             * **Tools Needed**: Electronic leak detector, fin comb tool, replacement MERV 13 filters, chemical foam spray.
             * **PPE Required**: Safety glasses, nitrile chemical-resistant gloves, dust respirator mask.
-            """)
-        elif selected_section == "Future Preventive Maintenance Schedule":
-            st.markdown("""
-            ### 📅 Future Preventive Actions
-            * **Short-Term**: Re-check system parameters via the dashboard after 24 hours of operation.
+            * **Safety Rules**: Ensure unit is isolated before checking belt tension. Use proper eye protection during chemical coil cleaning.
+            
+            ---
+            
+            ### 📅 Future Preventive Maintenance Schedule
+            * **Short-Term**: Re-check system parameters via the dashboard after 24 hours of operation post-service.
             * **Mid-Term**: Schedule comprehensive diagnostic test in the next monthly service.
             """)
-
-    elif risk == "MEDIUM":
-        if selected_section == "Executive Summary & Immediate Actions":
-            st.markdown("""
+        elif risk == "MEDIUM":
+            st.markdown(f"""
+            ## ℹ️ PRECAUTIONARY MAINTENANCE ACTION REPORT
+            
             ### 📝 Executive Summary
-            * **Status**: Mild parameter deviation from base.
+            The HVAC system (ID: **{machine_id}**, Subsystem: **{ac_type}**) is showing **MEDIUM risk status with minor parameter deviations**. Operating parameters indicate slight deviations from the baseline (such as mild overheating or high humidity levels).
+            
+            Currently, the system is performing its primary cooling function, and there is no immediate danger to the equipment. However, these deviations indicate early stages of component aging or dirty filter/coil states. If left unaddressed for multiple weeks, these minor issues will slowly compound, leading to higher wear rates and potential premature failure.
+            
             * **Urgency**: Routine (Within 7 days).
-            * **Summary**: Low-level anomalies detected. Performance is currently acceptable, but preventive maintenance will prevent long-term component wear.
-            * **Action**: Include in the weekly maintenance run.
-            """)
-        elif selected_section == "Technical Troubleshooting Guide":
-            st.markdown("""
-            ### 🛠️ Step-by-Step Technical Guide
-            1. **General Cleaning**: Clear debris from the outdoor condenser unit's vicinity.
-            2. **Tighten Fasteners**: Inspect electrical terminal connections and tighten loose screws.
-            3. **Check Damper**: Manually cycle dampers to confirm full range of motion.
-            """)
-        elif selected_section == "Required Tools & Safety Checklist":
-            st.markdown("""
-            ### 🧰 Safety & Tooling Checklist
-            * **Tools Needed**: Screwdriver set, contact cleaner spray, basic hand tools.
+            * **Current Health Score**: {health_score:.1f}/100.
+            * **Assessed Risk Level**: MEDIUM.
+            * **Primary Recommendations**: Clean air intake filters, tighten electrical connections, and monitor telemetry.
+            
+            ---
+            
+            ### 🛠️ Technical Troubleshooting Guide
+            1. **General Cleaning**: Clear debris, dirt, and leaves from the outdoor condenser unit's vicinity to ensure clear intake.
+            2. **Tighten Fasteners**: Inspect electrical terminal connections inside the control box and tighten loose screw terminations to spec torque.
+            3. **Check Damper**: Manually cycle the fresh air and return air dampers to confirm full range of motion.
+            
+            ---
+            
+            ### 🧰 Required Tools & Safety Checklist
+            * **Tools Needed**: Screwdriver set, electrical contact cleaner spray, basic hand tools.
             * **PPE Required**: Safety glasses, standard work gloves.
-            """)
-        elif selected_section == "Future Preventive Maintenance Schedule":
-            st.markdown("""
-            ### 📅 Future Preventive Actions
-            * **Short-Term**: Monitor telemetry on the sensor tracking page.
+            * **Safety Rules**: Shut off the local circuit breaker before opening the electrical control cabinet.
+            
+            ---
+            
+            ### 📅 Future Preventive Maintenance Schedule
+            * **Short-Term**: Monitor telemetry on the sensor tracking page weekly.
             * **Mid-Term**: Perform standard quarterly checkups.
             """)
-
-    else:
-        if selected_section == "Executive Summary & Immediate Actions":
-            st.markdown("""
+        else:
+            st.markdown(f"""
+            ## ✅ NOMINAL STATUS REPORT
+            
             ### 📝 Executive Summary
-            * **Status**: Subsystems healthy.
+            The HVAC system (ID: **{machine_id}**, Subsystem: **{ac_type}**) is operating under **NOMINAL/LOW risk conditions**. All monitored variables, electrical currents, pressures, and temperatures are well within their design limits.
+            
+            There are no mechanical or physical anomalies present. The system is operating at peak thermodynamic efficiency, drawing normal power, and maintaining excellent cooling performance. No corrective or immediate troubleshooting actions are needed at this stage.
+            
             * **Urgency**: Nominal.
-            * **Summary**: All components are running cleanly and inside designed efficiency ranges. No corrective actions are required at this time.
-            * **Action**: Maintain standard operating procedures.
-            """)
-        elif selected_section == "Technical Troubleshooting Guide":
-            st.markdown("""
-            ### 🛠️ Step-by-Step Technical Guide
+            * **Current Health Score**: {health_score:.1f}/100.
+            * **Assessed Risk Level**: LOW.
+            * **Primary Recommendations**: Maintain standard operating procedures and sensor logging.
+            
+            ---
+            
+            ### 🛠️ Technical Troubleshooting Guide
             * No active faults to troubleshoot. 
             * Run a manual diagnostic self-test to verify sensor calibration.
-            """)
-        elif selected_section == "Required Tools & Safety Checklist":
-            st.markdown("""
-            ### 🧰 Safety & Tooling Checklist
+            
+            ---
+            
+            ### 🧰 Required Tools & Safety Checklist
             * **Tools Needed**: None.
             * **PPE Required**: Standard safety boots.
-            """)
-        elif selected_section == "Future Preventive Maintenance Schedule":
-            st.markdown("""
-            ### 📅 Future Preventive Actions
+            * **Safety Rules**: Standard safety procedures apply.
+            
+            ---
+            
+            ### 📅 Future Preventive Maintenance Schedule
             * **Next Inspection**: Schedule standard monthly preventive maintenance in 30 days.
             """)

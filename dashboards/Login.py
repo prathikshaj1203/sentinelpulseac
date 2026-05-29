@@ -81,33 +81,13 @@ if "role" not in st.session_state:
 # LOGIN UI & LAYOUT
 # =========================================
 
-# Load and encode logo image as base64 for reliable rendering
-import base64
-try:
-    with open("dashboards/assets/logo.png", "rb") as f:
-        logo_base64 = base64.b64encode(f.read()).decode()
-    logo_html = f'''
-    <div style="text-align: center; margin-top: -30px; margin-bottom: 15px;">
-        <img src="data:image/png;base64,{logo_base64}" style="
-            border: 2px solid rgba(168, 85, 247, 0.45);
-            border-radius: 12px;
-            max-width: 220px;
-            height: auto;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
-            padding: 8px;
-            background-color: #030307;
-        ">
-    </div>
-    '''
-    st.markdown(logo_html, unsafe_allow_html=True)
-except Exception as e:
-    # Fallback to text header if image load fails
-    st.markdown("""
-    <div style="text-align: center; margin-top: -30px; margin-bottom: 15px;">
-        <h1 class="main-title" style="font-size: 36px; text-align: center; margin-bottom: 5px;">SentinelPulse AI</h1>
-        <p class="sub-title" style="text-align: center; font-size: 14px;">Industrial Predictive Maintenance Platform</p>
-    </div>
-    """, unsafe_allow_html=True)
+# Render clean text header
+st.markdown("""
+<div style="text-align: center; margin-top: -10px; margin-bottom: 25px;">
+    <h1 class="main-title" style="font-size: 42px; text-align: center; margin-bottom: 8px; font-weight: 800; color: #FFFFFF; text-shadow: 0 0 15px rgba(168, 85, 247, 0.5);">SentinelPulse AI</h1>
+    <p class="sub-title" style="text-align: center; font-size: 16px; color: #A855F7; letter-spacing: 1px; font-weight: 500;">Industrial Predictive Maintenance Platform</p>
+</div>
+""", unsafe_allow_html=True)
 
 # Login/Signup forms centered below the logo
 left, center, right = st.columns([1.1, 1.0, 1.1])

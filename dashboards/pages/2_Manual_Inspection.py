@@ -242,10 +242,139 @@ if predict_button:
     else:
         st.success("No physical or mechanical anomalies identified. All subsystems are operating within standard tolerance bands.")
 
-    st.markdown("### Maintenance Recommendation")
+    st.markdown("### Maintenance Recommendation Report")
+    
+    # Render short warning/status banner
     if risk == "CRITICAL":
-        st.error("EMERGENCY: Schedule immediate shutdown and manual inspection.")
+        st.error("🚨 **EMERGENCY STATUS**: Immediate system shutdown and manual inspection recommended.")
     elif risk == "HIGH":
-        st.warning("URGENT: Schedule maintenance check within 24 hours.")
+        st.warning("⚠️ **URGENT STATUS**: Schedule technical maintenance check within 24 hours.")
+    elif risk == "MEDIUM":
+        st.info("ℹ️ **PRECAUTIONARY STATUS**: Schedule inspection during next routine maintenance cycle.")
     else:
-        st.success("NORMAL: Keep normal operation. Routine maintenance schedule stands.")
+        st.success("✅ **NOMINAL STATUS**: Keep normal operation. Standard schedule stands.")
+
+    # Dropdown selector for the detailed report sections
+    selected_section = st.selectbox(
+        "Choose Detailed Maintenance Report Section to view/print:",
+        ["Executive Summary & Immediate Actions", "Technical Troubleshooting Guide", "Required Tools & Safety Checklist", "Future Preventive Maintenance Schedule"]
+    )
+
+    if risk == "CRITICAL":
+        if selected_section == "Executive Summary & Immediate Actions":
+            st.markdown("""
+            ### 📝 Executive Summary
+            * **Status**: Critical mechanical/electrical deviation.
+            * **Urgency**: Immediate (Within 1 hour).
+            * **Summary**: Multiple operational parameters (such as extreme temperature or excessive physical vibration) have crossed safety thresholds, indicating active component failure. Continued operation risks complete compressor destruction or electrical fire.
+            * **Action**: Order immediate system lockout and isolate the power supply.
+            """)
+        elif selected_section == "Technical Troubleshooting Guide":
+            st.markdown("""
+            ### 🛠️ Step-by-Step Technical Guide
+            1. **Isolate Power**: De-energize the unit at the local disconnect box. Apply Lock-Out Tag-Out (LOTO).
+            2. **Pressure Equalization**: Attach manifold gauge set and check high/low pressure differentials.
+            3. **Inspect Bearings**: Measure shaft axial play and check for metallic shavings in the oil pan.
+            4. **Clean Fins**: Visually inspect the condenser coils and clean off debris or scale deposits.
+            5. **Re-Test**: Power on briefly under controlled current monitoring to confirm current draw settles.
+            """)
+        elif selected_section == "Required Tools & Safety Checklist":
+            st.markdown("""
+            ### 🧰 Safety & Tooling Checklist
+            * **Tools Needed**: Laser Shaft Alignment kit, digital refrigerant manifold gauges, clamp-on multimeter, torque wrench.
+            * **PPE Required**: Electrical insulated gloves (Class 00), protective face shield, steel-toe safety boots.
+            * **Safety Rules**: Ensure 2-person buddy system is active for high-voltage panel checks.
+            """)
+        elif selected_section == "Future Preventive Maintenance Schedule":
+            st.markdown("""
+            ### 📅 Future Preventive Actions
+            * **Short-Term**: Increase telemetry monitoring frequency to 5-minute intervals for the next 7 days.
+            * **Mid-Term**: Schedule full compressor oil analysis and change liquid line filter drier within 15 days.
+            * **Long-Term**: Replace baseline vibration dampers on the mounting base.
+            """)
+
+    elif risk == "HIGH":
+        if selected_section == "Executive Summary & Immediate Actions":
+            st.markdown("""
+            ### 📝 Executive Summary
+            * **Status**: Significant parameter degradation detected.
+            * **Urgency**: Urgent (Within 24 hours).
+            * **Summary**: The system has shown signs of performance loss and moderate thermal/vibration stress. Scheduled technician checks are needed immediately to prevent escalation.
+            * **Action**: Assign a technician work order for detailed inspection.
+            """)
+        elif selected_section == "Technical Troubleshooting Guide":
+            st.markdown("""
+            ### 🛠️ Step-by-Step Technical Guide
+            1. **Filter Review**: Check primary and secondary air filters; replace if pressure drop exceeds 150 Pa.
+            2. **Leak Detection**: Use electronic leak detector or bubble test along all joint seals.
+            3. **Inspect Belt/Coupling**: Inspect motor-blower drive belt tension and adjust as needed.
+            4. **Coil Inspection**: Spray foam cleaner on the outdoor condenser fins and wash down.
+            """)
+        elif selected_section == "Required Tools & Safety Checklist":
+            st.markdown("""
+            ### 🧰 Safety & Tooling Checklist
+            * **Tools Needed**: Electronic leak detector, fin comb tool, replacement MERV 13 filters, chemical foam spray.
+            * **PPE Required**: Safety glasses, nitrile chemical-resistant gloves, dust respirator mask.
+            """)
+        elif selected_section == "Future Preventive Maintenance Schedule":
+            st.markdown("""
+            ### 📅 Future Preventive Actions
+            * **Short-Term**: Re-check system parameters via the dashboard after 24 hours of operation.
+            * **Mid-Term**: Schedule comprehensive diagnostic test in the next monthly service.
+            """)
+
+    elif risk == "MEDIUM":
+        if selected_section == "Executive Summary & Immediate Actions":
+            st.markdown("""
+            ### 📝 Executive Summary
+            * **Status**: Mild parameter deviation from base.
+            * **Urgency**: Routine (Within 7 days).
+            * **Summary**: Low-level anomalies detected. Performance is currently acceptable, but preventive maintenance will prevent long-term component wear.
+            * **Action**: Include in the weekly maintenance run.
+            """)
+        elif selected_section == "Technical Troubleshooting Guide":
+            st.markdown("""
+            ### 🛠️ Step-by-Step Technical Guide
+            1. **General Cleaning**: Clear debris from the outdoor condenser unit's vicinity.
+            2. **Tighten Fasteners**: Inspect electrical terminal connections and tighten loose screws.
+            3. **Check Damper**: Manually cycle dampers to confirm full range of motion.
+            """)
+        elif selected_section == "Required Tools & Safety Checklist":
+            st.markdown("""
+            ### 🧰 Safety & Tooling Checklist
+            * **Tools Needed**: Screwdriver set, contact cleaner spray, basic hand tools.
+            * **PPE Required**: Safety glasses, standard work gloves.
+            """)
+        elif selected_section == "Future Preventive Maintenance Schedule":
+            st.markdown("""
+            ### 📅 Future Preventive Actions
+            * **Short-Term**: Monitor telemetry on the sensor tracking page.
+            * **Mid-Term**: Perform standard quarterly checkups.
+            """)
+
+    else:
+        if selected_section == "Executive Summary & Immediate Actions":
+            st.markdown("""
+            ### 📝 Executive Summary
+            * **Status**: Subsystems healthy.
+            * **Urgency**: Nominal.
+            * **Summary**: All components are running cleanly and inside designed efficiency ranges. No corrective actions are required at this time.
+            * **Action**: Maintain standard operating procedures.
+            """)
+        elif selected_section == "Technical Troubleshooting Guide":
+            st.markdown("""
+            ### 🛠️ Step-by-Step Technical Guide
+            * No active faults to troubleshoot. 
+            * Run a manual diagnostic self-test to verify sensor calibration.
+            """)
+        elif selected_section == "Required Tools & Safety Checklist":
+            st.markdown("""
+            ### 🧰 Safety & Tooling Checklist
+            * **Tools Needed**: None.
+            * **PPE Required**: Standard safety boots.
+            """)
+        elif selected_section == "Future Preventive Maintenance Schedule":
+            st.markdown("""
+            ### 📅 Future Preventive Actions
+            * **Next Inspection**: Schedule standard monthly preventive maintenance in 30 days.
+            """)

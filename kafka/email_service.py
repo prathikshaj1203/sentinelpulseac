@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : email_service.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Email helper script using SMTP configurations to email critical alerts to administrators.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# smtplib, email.mime, os, dotenv
+# ───────────────────────────────────────────────────
+# USAGE:
+# Imported into consumers or notification triggers.
+# ═══════════════════════════════════════════════════
+
 import smtplib
 
 from email.mime.text import MIMEText
@@ -5,15 +25,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 import os
-
 from dotenv import load_dotenv
-
 load_dotenv()
-
-# =========================================
-# SEND ALERT EMAIL
-# =========================================
-
 def send_alert_email(
 
     machine_id,

@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : 6_Alerts.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Alarms control board to track system-generated alerts and allow operators to acknowledge active warnings.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# streamlit, dashboards.utils.ui, dashboards.utils.db
+# ───────────────────────────────────────────────────
+# USAGE:
+# Accessed via Streamlit sidebar navigation.
+# ═══════════════════════════════════════════════════
+
 import streamlit as st
 from utils.ui import init_page, page_header
 from utils.db import fetch_data, execute_query

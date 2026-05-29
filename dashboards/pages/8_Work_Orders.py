@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : 8_Work_Orders.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Work order management board to assign tasks, log details, mark completions, and review archives.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# streamlit, pandas, dashboards.utils.ui, dashboards.utils.db
+# ───────────────────────────────────────────────────
+# USAGE:
+# Accessed via Streamlit sidebar navigation.
+# ═══════════════════════════════════════════════════
+
 import streamlit as st
 import pandas as pd
 from utils.ui import init_page, page_header

@@ -42,4 +42,3 @@ ENV PYTHONUNBUFFERED=1
 # Make start.sh executable and set it as entrypoint
 RUN chmod +x start.sh
 CMD ["bash", "start.sh"]
-

@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : 4_Analytics.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Grafana observability portal embedding real-time system performance dashboards in an iframe.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# streamlit, streamlit.components.v1, os, dashboards.utils.ui
+# ───────────────────────────────────────────────────
+# USAGE:
+# Accessed via Streamlit sidebar navigation.
+# ═══════════════════════════════════════════════════
+
 import streamlit as st
 import streamlit.components.v1 as components
 from utils.ui import init_page, page_header

@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : 2_Manual_Inspection.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Technician manual inspection logger utilizing predictive models to assess failure risks and generate action reports.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# streamlit, pandas, numpy, joblib, os, dashboards.utils.ui, dashboards.utils.db
+# ───────────────────────────────────────────────────
+# USAGE:
+# Accessed via Streamlit sidebar navigation.
+# ═══════════════════════════════════════════════════
+
 import streamlit as st
 import pandas as pd
 import numpy as np

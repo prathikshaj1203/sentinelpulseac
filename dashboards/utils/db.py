@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : db.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Database layer offering safe connection pooling and SQLAlchemy engine setups for Streamlit widgets.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# psycopg2, pandas, os, sqlalchemy, dotenv
+# ───────────────────────────────────────────────────
+# USAGE:
+# Imported into Streamlit pages or management scripts.
+# ═══════════════════════════════════════════════════
+
 import psycopg2
 import pandas as pd
 import os

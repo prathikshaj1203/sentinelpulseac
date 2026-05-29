@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : 7_Machine_Details.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Deep-dive asset performance tracker providing focused sensor logs, charts, and recommendations for a selected machine.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# streamlit, pandas, plotly.express, dashboards.utils.ui, dashboards.utils.db
+# ───────────────────────────────────────────────────
+# USAGE:
+# Accessed via Streamlit sidebar navigation.
+# ═══════════════════════════════════════════════════
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px

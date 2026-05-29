@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : analyze_datasets.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Performs exploratory data analysis (EDA) on base CSV datasets to check columns, shape, and null values.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# pandas
+# ───────────────────────────────────────────────────
+# USAGE:
+# python ai_models/analyze_datasets.py
+# ═══════════════════════════════════════════════════
+
 import pandas as pd
 
 # =========================================

@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : Login.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Entrypoint and authentication page for the SentinelPulse Streamlit dashboard application.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# streamlit, dashboards.utils.ui, dashboards.utils.auth
+# ───────────────────────────────────────────────────
+# USAGE:
+# streamlit run dashboards/Login.py
+# ═══════════════════════════════════════════════════
+
 import streamlit as st
 from utils.ui import load_css
 from utils.auth import authenticate

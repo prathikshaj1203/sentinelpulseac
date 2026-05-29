@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : validated_consumer.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Kafka consumer ingestion system running XGBoost model evaluations, raising alerts, and writing metrics to PostgreSQL.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# kafka-python, json, psycopg2, os, ssl, joblib, pandas, numpy, dotenv, email_service
+# ───────────────────────────────────────────────────
+# USAGE:
+# python kafka/validated_consumer.py
+# ═══════════════════════════════════════════════════
+
 from kafka import KafkaConsumer
 import json
 import psycopg2

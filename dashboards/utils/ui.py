@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : ui.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# UI styling helper wrapping role-based access checks, layout templates, and custom theme injection.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# streamlit, os
+# ───────────────────────────────────────────────────
+# USAGE:
+# Imported into Streamlit pages.
+# ═══════════════════════════════════════════════════
+
 import streamlit as st
 import os
 def init_page(title, required_role=None):

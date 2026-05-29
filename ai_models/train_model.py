@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : train_model.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Trains a supervised XGBoost classification model to predict HVAC compressor failures.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# pandas, numpy, joblib, scikit-learn, xgboost
+# ───────────────────────────────────────────────────
+# USAGE:
+# python ai_models/train_model.py
+# ═══════════════════════════════════════════════════
+
 import pandas as pd
 import numpy as np
 import joblib

@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : auth.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Security module providing user authentication and sign-up interfaces against PostgreSQL databases.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# dashboards.utils.db
+# ───────────────────────────────────────────────────
+# USAGE:
+# Imported into Streamlit pages.
+# ═══════════════════════════════════════════════════
+
 from utils.db import fetch_data, execute_query
 
 def authenticate(username, password):

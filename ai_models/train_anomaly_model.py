@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : train_anomaly_model.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Trains an unsupervised Isolation Forest model to detect HVAC operation anomalies on scale features.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# pandas, joblib, scikit-learn
+# ───────────────────────────────────────────────────
+# USAGE:
+# python ai_models/train_anomaly_model.py
+# ═══════════════════════════════════════════════════
+
 import pandas as pd
 import joblib
 

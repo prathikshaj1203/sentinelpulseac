@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : telemetry_pipeline_dag.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Defines an Apache Airflow DAG executing routine checks on critical HVAC systems and generating daily reports.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# airflow, datetime, psycopg2
+# ───────────────────────────────────────────────────
+# USAGE:
+# Scheduled automatically by the Airflow scheduler or triggered via Airflow UI.
+# ═══════════════════════════════════════════════════
+
 from airflow import DAG
 
 from airflow.operators.python import PythonOperator

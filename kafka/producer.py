@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : producer.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Simulates live stream feeds by serializing and posting rows from the master HVAC CSV dataset to Kafka brokers.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# kafka-python, pandas, json, time, os, ssl, dotenv
+# ───────────────────────────────────────────────────
+# USAGE:
+# python kafka/producer.py
+# ═══════════════════════════════════════════════════
+
 from kafka import KafkaProducer
 import ssl
 

@@ -1,3 +1,23 @@
+# ───────────────────────────────────────────────────
+# PROJECT   : SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
+# FILE      : prepare_dataset.py
+# AUTHOR    : PRATHIKSHA J
+# INTERN ID : SIT067
+# DIVISION  : Software & AI Division – Stacia Corp
+# MENTOR    : Mr. Lakshman P V (Chief Operational Officer)
+# DATE      : 29-05-2026
+# VERSION   : v1.0
+# ───────────────────────────────────────────────────
+# DESCRIPTION:
+# Loads, processes, combines, and feature-engineers master datasets to prepare training features for predictive maintenance.
+# ───────────────────────────────────────────────────
+# DEPENDENCIES:
+# pandas, numpy
+# ───────────────────────────────────────────────────
+# USAGE:
+# python ai_models/prepare_dataset.py
+# ═══════════════════════════════════════════════════
+
 import pandas as pd
 import numpy as np
 

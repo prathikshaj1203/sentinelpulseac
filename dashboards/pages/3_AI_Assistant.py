@@ -205,11 +205,11 @@ with col_toggle:
 prompt = st.chat_input("Ask HVAC troubleshooting questions...")
 
 if prompt:
-    # Check rate limit (minimum 5 seconds between user messages)
+    # Check rate limit (minimum 1 second between user messages)
     current_time = time.time()
     last_time = st.session_state.get("last_message_time", 0.0)
-    if current_time - last_time < 5.0:
-        st.error("Rate limit exceeded. Please wait 5 seconds before sending another message.")
+    if current_time - last_time < 1.0:
+        st.error("Rate limit exceeded. Please wait 1 second before sending another message.")
     else:
         st.session_state.last_message_time = current_time
         
@@ -244,12 +244,14 @@ if prompt:
                     
                     if detailed_mode:
                         system_content += (
-                            "\n\nPlease provide a highly detailed, technical, step-by-step diagnostic breakdown. "
+                            "\n\nPlease provide an extremely detailed, technical, step-by-step diagnostic breakdown. "
+                            "Write as much detail as possible to explain all potential failure modes. "
                             "Include possible root causes, concrete recommendations, estimated repair times, and required tools."
                         )
                     else:
                         system_content += (
-                            "\n\nPlease provide a concise, direct, normal troubleshooting answer."
+                            "\n\nPlease provide a clear, helpful troubleshooting answer of normal length (approx. 2-3 paragraphs) "
+                            "using concrete bullet points."
                         )
                     
                     model = genai.GenerativeModel(
@@ -265,8 +267,8 @@ if prompt:
                     contents.append({"role": "user", "parts": [prompt]})
                     
                     generation_config = genai.types.GenerationConfig(
-                        max_output_tokens=1500 if detailed_mode else 800,
-                        temperature=0.3
+                        max_output_tokens=4096,
+                        temperature=0.7
                     )
                     
                     completion = model.generate_content(

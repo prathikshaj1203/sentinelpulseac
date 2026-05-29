@@ -253,7 +253,7 @@ if prompt:
                         )
                     
                     model = genai.GenerativeModel(
-                        model_name='gemini-2.5-flash',
+                        model_name='gemini-1.5-flash',
                         system_instruction=system_content
                     )
                     
@@ -265,7 +265,7 @@ if prompt:
                     contents.append({"role": "user", "parts": [prompt]})
                     
                     generation_config = genai.types.GenerationConfig(
-                        max_output_tokens=1000 if detailed_mode else 400,
+                        max_output_tokens=1500 if detailed_mode else 800,
                         temperature=0.3
                     )
                     
@@ -274,10 +274,6 @@ if prompt:
                         generation_config=generation_config
                     )
                     response = completion.text
-                    
-                    # Safe regex strip of any emojis to guarantee a clean text output
-                    import re
-                    response = re.sub(r'[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2600-\u26FF]|\uD83E[\uDD00-\uDFFF]', '', response)
                     
                 except Exception as e:
                     st.error("api fallback")

@@ -1,20 +1,6 @@
----
-title: SentinelPulse
-emoji: ⚡
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_port: 7860
-pinned: false
----
-
 # ⚡ SentinelPulse AI – Real-Time Predictive Maintenance System for Industrial Air Compressors
 
-Developed for **Software & AI Division – Stacia Corp**  
-* **Author:** Prathiksha J (Intern ID: SIT067)  
-* **Mentor:** Mr. Lakshman P V (Chief Operational Officer)  
-* **Date:** May 20, 2026  
-* **Version:** v1.0
+### 🚀 Live Deployment: [SentinelPulse App on Hugging Face](https://miyamurax-sentinelpulse.hf.space)
 
 ---
 

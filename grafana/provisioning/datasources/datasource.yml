@@ -1,0 +1,20 @@
+apiVersion: 1
+
+datasources:
+  - name: telemetry_db
+    type: postgres
+    uid: telemetry_db
+    access: proxy
+    url: postgres:5432
+    user: postgres
+    database: telemetry_db
+    jsonData:
+      database: telemetry_db
+      sslmode: 'disable'
+      connMaxLifetime: 14400
+      connMaxIdle: 2
+      maxOpenConns: 5
+      timescaledb: false
+    secureJsonData:
+      password: root1234
+    isDefault: true

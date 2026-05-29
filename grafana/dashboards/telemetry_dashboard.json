@@ -1,0 +1,660 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "title": "Air Compressor Health Score",
+      "type": "bargauge",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT timestamp AS \"time\", machine_id AS metric, health_score AS value FROM telemetry_data WHERE $__timeFilter(timestamp) ORDER BY 1",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 40
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "green",
+                "value": 85
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "title": "Failure Probability (%)",
+      "type": "bargauge",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT timestamp AS \"time\", machine_id AS metric, failure_probability AS value FROM telemetry_data WHERE $__timeFilter(timestamp) ORDER BY 1",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 30
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "title": "Vibration Level (mm/s)",
+      "type": "bargauge",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT timestamp AS \"time\", machine_id AS metric, vibration AS value FROM telemetry_data WHERE $__timeFilter(timestamp) ORDER BY 1",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "min": 0,
+          "max": 3.5,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1.2
+              },
+              {
+                "color": "red",
+                "value": 1.8
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "title": "Compressor Temperature (°C)",
+      "type": "bargauge",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT timestamp AS \"time\", machine_id AS metric, temperature AS value FROM telemetry_data WHERE $__timeFilter(timestamp) ORDER BY 1",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "min": 40,
+          "max": 180,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 105
+              },
+              {
+                "color": "red",
+                "value": 135
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 5,
+      "title": "Outlet Pressure (bar)",
+      "type": "bargauge",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT timestamp AS \"time\", machine_id AS metric, pressure AS value FROM telemetry_data WHERE $__timeFilter(timestamp) ORDER BY 1",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "min": 0,
+          "max": 15,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 8
+              },
+              {
+                "color": "red",
+                "value": 12
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 6,
+      "title": "Motor RPM & Power Usage (W)",
+      "type": "bargauge",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT timestamp AS \"time\", machine_id || ' - RPM' AS metric, rpm AS value FROM telemetry_data WHERE $__timeFilter(timestamp) UNION ALL SELECT timestamp AS \"time\", machine_id || ' - Power' AS metric, power_usage AS value FROM telemetry_data WHERE $__timeFilter(timestamp) ORDER BY 1",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*Power.*"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "watt"
+              },
+              {
+                "id": "max",
+                "value": 20000
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*RPM.*"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "rotrpm"
+              },
+              {
+                "id": "max",
+                "value": 3000
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 7,
+      "title": "Machine Anomaly Status Timeline",
+      "type": "state-timeline",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT timestamp AS \"time\", machine_id AS metric, anomaly_status AS value FROM telemetry_data WHERE $__timeFilter(timestamp) ORDER BY 1",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "NORMAL": {
+                  "text": "Normal",
+                  "color": "green",
+                  "index": 0
+                },
+                "ANOMALY DETECTED": {
+                  "text": "Anomaly Detected",
+                  "color": "red",
+                  "index": 1
+                }
+              }
+            }
+          ]
+        }
+      },
+      "options": {
+        "mergeValues": true,
+        "showValue": "auto",
+        "alignValue": "center",
+        "rowHeight": 0.8
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 8,
+      "title": "Machine Risk Level Timeline",
+      "type": "state-timeline",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT timestamp AS \"time\", machine_id AS metric, risk_level AS value FROM telemetry_data WHERE $__timeFilter(timestamp) ORDER BY 1",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "LOW": {
+                  "text": "Low Risk",
+                  "color": "green",
+                  "index": 0
+                },
+                "MEDIUM": {
+                  "text": "Medium Risk",
+                  "color": "yellow",
+                  "index": 1
+                },
+                "HIGH": {
+                  "text": "High Risk",
+                  "color": "orange",
+                  "index": 2
+                },
+                "CRITICAL": {
+                  "text": "Critical Risk",
+                  "color": "red",
+                  "index": 3
+                }
+              }
+            }
+          ]
+        }
+      },
+      "options": {
+        "mergeValues": true,
+        "showValue": "auto",
+        "alignValue": "center",
+        "rowHeight": 0.8
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 30
+      },
+      "id": 9,
+      "title": "Active Critical & High Risk Alerts",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT timestamp AS \"Time\", machine_id AS \"Compressor ID\", risk_level AS \"Risk Level\", root_cause AS \"Root Cause\" FROM telemetry_data WHERE risk_level IN ('HIGH', 'CRITICAL') AND $__timeFilter(timestamp) ORDER BY timestamp DESC LIMIT 50",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          }
+        }
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 30
+      },
+      "id": 10,
+      "title": "Fleet Risk Level Distribution",
+      "type": "bargauge",
+      "datasource": {
+        "type": "postgres",
+        "uid": "telemetry_db"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "telemetry_db"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT risk_level AS metric, COUNT(*) AS value FROM telemetry_data WHERE $__timeFilter(timestamp) GROUP BY risk_level",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      }
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "HVAC Telemetry & AI Analytics",
+  "uid": "hvac_telemetry_dash",
+  "version": 10,
+  "weekStart": ""
+}

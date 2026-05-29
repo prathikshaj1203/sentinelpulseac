@@ -1,0 +1,15 @@
+venv
+venv/**
+**/venv
+**/venv/**
+.git
+.git/**
+.streamlit
+.streamlit/**
+__pycache__
+__pycache__/**
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.db
+.db/**

@@ -62,8 +62,15 @@ EOF
 export GF_AUTH_ANONYMOUS_ENABLED=true
 export GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
 export GF_SECURITY_ALLOW_EMBEDDING=true
-export GF_SERVER_ROOT_URL="%(protocol)s://%(domain)s:%(http_port)s/grafana/"
 export GF_SERVER_SERVE_FROM_SUB_PATH=true
+
+if [ -n "$SPACE_ID" ]; then
+    # Dynamically construct the absolute space domain for redirects
+    subdomain=$(echo "$SPACE_ID" | tr '[:upper:]' '[:lower:]' | tr '/' '-')
+    export GF_SERVER_ROOT_URL="https://${subdomain}.hf.space/grafana/"
+else
+    export GF_SERVER_ROOT_URL="http://localhost:3000/grafana/"
+fi
 
 # Export all path overrides to target /tmp
 export GF_PATHS_DATA=/tmp/grafana/data

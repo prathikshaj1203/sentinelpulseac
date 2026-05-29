@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     gnupg2 \
     nginx \
+    libfontconfig1 \
+    musl \
     && wget -q https://dl.grafana.com/oss/release/grafana_10.4.2_amd64.deb \
     && dpkg -i grafana_10.4.2_amd64.deb \
     && rm grafana_10.4.2_amd64.deb \

@@ -277,7 +277,7 @@ if prompt:
                     
                     # Safe regex strip of any emojis to guarantee a clean text output
                     import re
-                    response = re.sub(r'[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]', '', response)
+                    response = re.sub(r'[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2600-\u26FF]|\uD83E[\uDD00-\uDFFF]', '', response)
                     
                 except Exception as e:
                     st.error("api fallback")

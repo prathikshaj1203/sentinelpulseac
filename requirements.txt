@@ -13,3 +13,4 @@ requests
 sqlalchemy
 google-generativeai
 xgboost
+streamlit-autorefresh

@@ -25,6 +25,7 @@ COPY . .
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
+RUN rm -f /etc/nginx/sites-enabled/default
 
 # Copy Grafana dashboards & provisioning folders
 COPY grafana/provisioning/ /etc/grafana/provisioning/
